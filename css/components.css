@@ -1,0 +1,437 @@
+/* 컴포넌트 스타일 - 재사용 가능한 UI 컴포넌트 */
+
+/* 윤곽선 제어 버튼들 */
+.wireframe-controls {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.wireframe-controls .btn {
+  font-size: var(--font-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+}
+
+/* 사이드바 리사이즈 핸들 */
+.sidebar-resize-handle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #00d4ff 0%, #0099cc 50%, #00d4ff 100%);
+  cursor: col-resize;
+  z-index: 1001;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
+}
+
+.sidebar-resize-handle:hover {
+  width: 6px;
+  background: linear-gradient(180deg, #00ffff 0%, #00aaff 50%, #00ffff 100%);
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
+}
+
+.sidebar-resize-handle:active {
+  background: linear-gradient(180deg, #ffffff 0%, #00d4ff 50%, #ffffff 100%);
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.8);
+}
+
+/* 세로 버튼 패널 - 뷰포트 외곽라인과 정렬 */
+.vertical-button-panel {
+  position: fixed;
+  top: 25px; /* 뷰포트 마진(20px) + 추가 여백(5px) */
+  left: 325px; /* 사이드바(300px) + 뷰포트 마진(20px) + 여백(5px) */
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* 8px에서 4px로 줄임 */
+  z-index: 1002;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 8px; /* 12px에서 8px로 줄임 */
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* 아이콘 버튼 */
+.btn-icon {
+  width: 40px; /* 토글 버튼과 같은 크기 */
+  height: 40px; /* 토글 버튼과 같은 크기 */
+  border: none; /* 외곽라인 제거 */
+  border-radius: 8px; /* 토글 버튼과 같은 border-radius */
+  background: var(--primary-gradient); /* 토글 버튼과 같은 background */
+  color: white;
+  font-size: 16px; /* 토글 버튼과 같은 font-size */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md); /* border-neon 제거 */
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-icon:hover {
+  transform: scale(1.05); /* 토글 버튼과 같은 hover 효과 */
+  box-shadow: var(--shadow-md); /* border-glow 제거 */
+}
+
+.btn-icon:hover::before {
+  left: 100%;
+}
+
+.btn-icon:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(0, 212, 255, 0.4);
+}
+
+/* 윤곽선 색상 선택 패널 - 뷰포트 외곽라인과 정렬 */
+.wireframe-color-panel {
+  position: fixed;
+  top: 25px; /* 뷰포트 마진(20px) + 추가 여백(5px) */
+  left: 385px; /* 세로 버튼 패널 오른쪽 (뷰포트 마진 고려) */
+  display: flex;
+  gap: 4px; /* 8px에서 4px로 줄임 */
+  background: rgba(0, 0, 0, 0.1);
+  padding: 6px; /* 10px에서 6px로 줄임 */
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1003;
+}
+
+/* 색상 선택 버튼 */
+.btn-color {
+  width: 30px;
+  height: 30px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-color:hover {
+  transform: scale(1.1);
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn-color:active {
+  transform: scale(0.95);
+}
+
+/* 버튼 컴포넌트 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: var(--font-md);
+  font-weight: 500;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--primary-gradient);
+  color: var(--text-white);
+  box-shadow: var(--shadow-primary), var(--border-neon);
+  border: 2px solid var(--primary-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--border-glow);
+}
+
+.btn-primary:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--bg-hover);
+  border-color: var(--text-muted);
+}
+
+.btn-control {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-sm);
+  flex: 1;
+}
+
+.btn-control:hover:not(:disabled) {
+  background: var(--bg-hover);
+  border-color: var(--text-muted);
+}
+
+.btn-toggle {
+  /* position: fixed 제거 - 세로 버튼 패널 안에서 상대적으로 위치 */
+  width: var(--button-size-sm);
+  height: var(--button-size-sm);
+  background: var(--primary-gradient);
+  color: var(--text-white);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: var(--font-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-md);
+  z-index: var(--z-toggle);
+}
+
+.btn-toggle:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+/* 카드 컴포넌트 */
+.card {
+  background: var(--bg-primary);
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.card-header {
+  background: var(--primary-gradient);
+  color: var(--text-white);
+  padding: var(--spacing-xl);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.card-content {
+  padding: var(--spacing-xl);
+  overflow-y: auto;
+  overflow-x: auto;
+  position: relative;
+  width: 100%;
+}
+
+/* 트리 컴포넌트 */
+.tree-node {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  min-width: 280px;
+}
+
+.tree-item {
+  margin: 0.5px 0;
+  min-width: 280px;
+}
+
+.tree-item-content {
+  display: flex;
+  align-items: flex-start;
+  padding: 4px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+  min-width: 280px;
+  width: max-content;
+}
+
+.tree-item-content:hover {
+  background-color: var(--bg-secondary);
+}
+
+.tree-item-content.expanded {
+  background-color: var(--bg-hover);
+}
+
+.tree-toggle {
+  width: 16px;
+  height: 16px;
+  margin-right: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-xs);
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all var(--transition-fast);
+}
+
+.tree-toggle:hover {
+  background-color: var(--border-color);
+}
+
+.tree-toggle.expanded::before {
+  content: '▼';
+}
+
+.tree-toggle.collapsed::before {
+  content: '▶';
+}
+
+.tree-toggle.leaf::before {
+  content: '•';
+  color: var(--text-muted);
+}
+
+/* 타입 컨테이너 (라운드 네모 + 텍스트 오버랩) */
+.tree-type-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+/* 라운드 네모 배경 + 텍스트 오버랩 컨테이너 */
+.tree-type-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  min-width: fit-content;
+  width: fit-content;
+}
+
+/* 타입 텍스트 (배경과 완전히 오버랩) */
+.tree-type-text {
+  font-weight: 600;
+  color: white;
+  font-size: var(--font-sm);
+  white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.tree-name {
+  color: var(--text-secondary);
+  font-size: var(--font-sm);
+  white-space: nowrap;
+  line-height: 1.2;
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
+.tree-children {
+  margin-left: 16px; /* 22px에서 16px로 줄임 */
+  border-left: 1px solid var(--border-color);
+  padding-left: 6px; /* var(--spacing-sm)에서 6px로 줄임 */
+  margin-top: 2px;
+}
+
+.tree-children.hidden {
+  display: none;
+}
+
+/* 진행률 컴포넌트 */
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: var(--border-light);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: var(--spacing-md);
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--primary-gradient);
+  width: 0%;
+  transition: width var(--transition-normal);
+}
+
+/* 메시지 컴포넌트 */
+.message {
+  text-align: center;
+  font-size: var(--font-md);
+  font-weight: 500;
+}
+
+.message.success {
+  color: var(--success-color);
+}
+
+.message.error {
+  color: var(--error-color);
+}
+
+.message.warning {
+  color: var(--warning-color);
+}
+
+.message.info {
+  color: var(--info-color);
+}
+
+/* 유틸리티 클래스 */
+.hidden {
+  display: none !important;
+}
+
+.no-data {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: var(--font-sm);
+  padding: var(--spacing-xl);
+}

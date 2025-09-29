@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebIFCViewer - 파일 업로드</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <!-- 업로드 결과 메시지 (화면 중앙 고정) -->
+    <div id="uploadResult" class="upload-result hidden">
+        <div id="resultMessage" class="result-message"></div>
+    </div>
+    
+    <div class="app-container">
+        <!-- 통합 사이드바 -->
+        <aside class="unified-sidebar" id="unifiedSidebar">
+            <!-- 사이드바 헤더 -->
+            <div class="sidebar-header">
+                <!-- 타이틀 제거됨 -->
+            </div>
+            
+            <!-- 사이드바 콘텐츠 - 2개 영역으로 가로 분할 -->
+            <div class="sidebar-content">
+                <!-- 왼쪽: 트리 구조 영역 -->
+                <div class="sidebar-section tree-section">
+                    <div class="section-header">
+                        <h4>IFC 구조</h4>
+                        <div class="tree-controls">
+                            <button type="button" id="expandAllBtn" class="btn-control" title="모두 펼치기">📂</button>
+                            <button type="button" id="collapseAllBtn" class="btn-control" title="모두 접기">📁</button>
+                        </div>
+                    </div>
+                    <div class="tree-content" id="treeContent">
+                        <!-- 트리 구조가 여기에 동적으로 생성됩니다 -->
+                    </div>
+                </div>
+                
+                <!-- 가로 리사이즈 핸들 -->
+                <div class="horizontal-resize-handle" id="horizontalResizeHandle"></div>
+                
+                <!-- 오른쪽: 속성정보 영역 -->
+                <div class="sidebar-section properties-section">
+                    <div class="section-header">
+                        <h4>속성정보</h4>
+                    </div>
+                    <div class="properties-list" id="propertiesList">
+                        <!-- 속성정보가 여기에 동적으로 생성됩니다 -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 사이드바 리사이즈 핸들 -->
+            <div class="sidebar-resize-handle" id="sidebarResizeHandle"></div>
+        </aside>
+        
+        <!-- 세로 버튼 패널 -->
+        <div class="vertical-button-panel">
+            <!-- 사이드바 토글 버튼 -->
+            <button type="button" id="toggleSidebarBtn" class="btn-icon btn-toggle" title="사이드바 토글">☰</button>
+            
+            <!-- A 버튼: 트리구조 보이기/숨기기 -->
+            <button type="button" id="toggleTreeBtn" class="btn-icon" title="트리구조 보이기/숨기기">A</button>
+            
+            <!-- B 버튼: 속성정보 보이기/숨기기 -->
+            <button type="button" id="togglePropertiesBtn" class="btn-icon" title="속성정보 보이기/숨기기">B</button>
+            
+            <!-- 파일 선택 버튼 -->
+            <button type="button" id="selectFileBtn" class="btn-icon" title="파일 선택">📁</button>
+            <input type="file" id="fileInput" accept=".ifc" hidden>
+            
+            <!-- 카메라 맞춤 버튼 -->
+            <button type="button" id="fitCameraBtn" class="btn-icon" title="카메라 맞춤">🎯</button>
+            
+            <!-- 원점 표시/숨김 토글 버튼 -->
+            <button type="button" id="toggleOriginBtn" class="btn-icon" title="원점 표시/숨김">⚫</button>
+            
+            <!-- 섹션박스 표시/제거 토글 버튼 -->
+            <button type="button" id="toggleSectionBoxBtn" class="btn-icon" title="섹션박스 표시/제거">📦</button>
+            
+            <!-- 윤곽선 표시/숨김 토글 버튼 -->
+            <button type="button" id="toggleWireframeBtn" class="btn-icon" title="윤곽선 표시/숨김">🖼️</button>
+        </div>
+
+        <!-- 메인 콘텐츠 -->
+        <main class="main-content">
+            <!-- 타이틀 제거됨 -->
+            
+            <!-- 업로드 진행 상태 -->
+            <div id="uploadProgress" class="upload-progress hidden">
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <p id="progressText">업로드 중...</p>
+            </div>
+            
+            <!-- 업로드 결과는 body 바로 아래로 이동됨 -->
+            
+            <!-- 3D 뷰어 -->
+            <div id="viewer3D" class="viewer-3d">
+                <!-- 윤곽선 색상 선택 패널 -->
+                <div class="wireframe-color-panel hidden" id="wireframeColorPanel">
+                    <button type="button" id="wireframeBlackBtn" class="btn-color" style="background-color: #000000;" title="검은색"></button>
+                    <button type="button" id="wireframeWhiteBtn" class="btn-color" style="background-color: #ffffff;" title="흰색"></button>
+                    <button type="button" id="wireframeRedBtn" class="btn-color" style="background-color: #ff0000;" title="빨간색"></button>
+                </div>
+            </div>
+               </main>
+           </div>
+    
+    <script type="module" src="script.js"></script>
+</body>
+</html>
