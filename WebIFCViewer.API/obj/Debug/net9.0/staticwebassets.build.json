@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "LvFxGqbUUvVCD1pZaR8Ro11vM4UQFUtUAI2obfDpR6g=",
+  "Source": "WebIFCViewer.API",
+  "BasePath": "_content/WebIFCViewer.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

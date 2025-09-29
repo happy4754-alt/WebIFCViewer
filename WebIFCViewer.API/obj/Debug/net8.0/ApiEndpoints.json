@@ -1,0 +1,86 @@
+[
+  {
+    "ContainingType": "WebIFCViewer.API.Controllers.IfcGeometryController",
+    "Method": "ExtractGeometry",
+    "RelativePath": "api/IfcGeometry/extract/{fileName}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fileName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebIFCViewer.API.Controllers.IfcGeometryController",
+    "Method": "GetGeometryInfo",
+    "RelativePath": "api/IfcGeometry/info/{fileName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fileName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebIFCViewer.API.Controllers.IfcParserController",
+    "Method": "GetUploadedFiles",
+    "RelativePath": "api/IfcParser/files",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebIFCViewer.API.Controllers.IfcParserController",
+    "Method": "ParseIfcFile",
+    "RelativePath": "api/IfcParser/parse/{fileName}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fileName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebIFCViewer.API.Controllers.UploadController",
+    "Method": "UploadIfcFile",
+    "RelativePath": "api/Upload",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebIFCViewer.API.Controllers.UploadController",
+    "Method": "GetStatus",
+    "RelativePath": "api/Upload/status",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]
