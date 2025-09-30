@@ -46,8 +46,70 @@ namespace WebIFCViewer.API.Services
                     }
                 };
 
-                // IFC 버전에 따른 처리
-                var ifcVersion = ifcStore.SchemaVersion;
+                // 간단한 테스트용 Geometry 데이터 생성
+                await CreateTestGeometry(result);
+
+                result.Metadata.ObjectCount = result.Geometries.Count;
+                _logger.LogInformation("IFC Geometry 추출 완료: {ObjectCount}개 객체", result.Metadata.ObjectCount);
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "IFC Geometry 추출 중 오류 발생: {ErrorMessage}, 스택트레이스: {StackTrace}", 
+                    ex.Message, ex.StackTrace);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 테스트용 간단한 Geometry 데이터 생성
+        /// </summary>
+        private async Task CreateTestGeometry(IfcGeometryResult result)
+        {
+            // 간단한 박스 Geometry 생성 (테스트용)
+            var testGeometry = new IfcGeometryData
+            {
+                globalId = "test-box-001",
+                ifcType = "IfcBox",
+                vertices = new List<float>
+                {
+                    // 박스의 8개 꼭짓점
+                    -1.0f, -1.0f, -1.0f,  // 0
+                     1.0f, -1.0f, -1.0f,  // 1
+                     1.0f,  1.0f, -1.0f,  // 2
+                    -1.0f,  1.0f, -1.0f,  // 3
+                    -1.0f, -1.0f,  1.0f,  // 4
+                     1.0f, -1.0f,  1.0f,  // 5
+                     1.0f,  1.0f,  1.0f,  // 6
+                    -1.0f,  1.0f,  1.0f   // 7
+                },
+                faces = new List<int>
+                {
+                    // 12개 삼각형 면
+                    0, 1, 2,  0, 2, 3,  // 앞면
+                    4, 7, 6,  4, 6, 5,  // 뒷면
+                    0, 4, 5,  0, 5, 1,  // 아래면
+                    2, 6, 7,  2, 7, 3,  // 위면
+                    0, 3, 7,  0, 7, 4,  // 왼쪽면
+                    1, 5, 6,  1, 6, 2   // 오른쪽면
+                },
+                hostId = "",
+                colorHEX = "4CAF50",
+                transparency = 0.0f
+            };
+
+            result.Geometries.Add(testGeometry);
+            await Task.CompletedTask;
+        }
+
+        /// <summary>
+        /// 기본 Geometry 추출 (원래 로직 - 현재 비활성화)
+        /// </summary>
+        private async Task ExtractBasicGeometry(IfcStore ifcStore, IfcGeometryResult result)
+        {
+            // IFC 버전에 따른 처리
+            var ifcVersion = ifcStore.SchemaVersion;
                 _logger.LogInformation("IFC 버전: {IfcVersion}", ifcVersion);
 
                 // Geometry 추출
