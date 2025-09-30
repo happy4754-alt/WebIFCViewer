@@ -197,3 +197,5 @@ C:\Users\ks_ma\Documents\WebIFCViewer\backend\WebIFCViewer.API\bin\Debug\net8.0\
 C:\Users\ks_ma\Documents\WebIFCViewer\backend\WebIFCViewer.API\bin\Debug\net8.0\runtimes\win-x86\native\TKXDESTEP.dll
 C:\Users\ks_ma\Documents\WebIFCViewer\backend\WebIFCViewer.API\bin\Debug\net8.0\runtimes\win-x86\native\TKXSBase.dll
 C:\Users\ks_ma\Documents\WebIFCViewer\backend\WebIFCViewer.API\bin\Debug\net8.0\runtimes\win-x86\native\TKernel.dll
+C:\Users\ks_ma\Documents\WebIFCViewer\backend\WebIFCViewer.API\obj\Debug\net8.0\WebIFCViewer.API.sourcelink.json
+C:\Users\ks_ma\Documents\WebIFCViewer\backend\WebIFCViewer.API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

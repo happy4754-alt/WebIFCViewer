@@ -112,46 +112,5 @@ namespace WebIFCViewer.API.Controllers
             }
         }
 
-        /// <summary>
-        /// GUID별 속성정보 추출
-        /// </summary>
-        /// <param name="guid">객체 GUID</param>
-        /// <returns>속성정보 결과</returns>
-        [HttpPost("extractByGlobalId/{guid}")]
-        public async Task<IActionResult> ExtractPropertiesByGlobalId(string guid)
-        {
-            try
-            {
-                // 현재 로드된 IFC 파일 경로 가져오기 (실제 구현에서는 세션 또는 캐시에서 가져와야 함)
-                var uploadsPath = Path.Combine(Directory.GetCurrentDirectory(), "uploads");
-                var ifcFiles = Directory.GetFiles(uploadsPath, "*.ifc");
-                
-                if (ifcFiles.Length == 0)
-                {
-                    return Ok(new IfcPropertyResult
-                    {
-                        Success = false,
-                        ErrorMessage = "로드된 IFC 파일이 없습니다."
-                    });
-                }
-
-                // 가장 최근 파일 사용 (실제로는 현재 로드된 파일을 추적해야 함)
-                var latestFile = ifcFiles.OrderByDescending(f => File.GetLastWriteTime(f)).First();
-                
-                using var ifcStore = IfcStore.Open(latestFile);
-                var result = await _propertyExtractor.ExtractPropertiesByGlobalIdAsync(ifcStore, guid);
-                
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "GUID별 속성정보 추출 중 오류 발생: {Guid}", guid);
-                return Ok(new IfcPropertyResult
-                {
-                    Success = false,
-                    ErrorMessage = $"속성정보 추출 중 오류가 발생했습니다: {ex.Message}"
-                });
-            }
-        }
     }
 }

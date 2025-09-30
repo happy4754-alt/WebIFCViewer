@@ -286,5 +286,6 @@ namespace WebIFCViewer.API.Services
             
             properties.Add(propertyInfo);
         }
+
     }
 }
