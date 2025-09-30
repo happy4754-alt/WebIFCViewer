@@ -3,7 +3,7 @@
  * 백엔드와의 모든 API 통신을 담당
  */
 export class ApiService {
-    constructor(baseUrl = 'http://localhost:5000/api') {
+    constructor(baseUrl = 'https://webifcviewer-1.onrender.com/api') {
         this.baseUrl = baseUrl;
     }
 
