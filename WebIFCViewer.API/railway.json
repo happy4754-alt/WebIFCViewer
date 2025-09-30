@@ -1,11 +1,10 @@
 {
   "$schema": "https://railway.app/railway.schema.json",
   "build": {
-    "builder": "NIXPACKS",
-    "buildCommand": "cd WebIFCViewer.API && dotnet build"
+    "builder": "NIXPACKS"
   },
   "deploy": {
-    "startCommand": "cd WebIFCViewer.API && dotnet run",
+    "startCommand": "dotnet WebIFCViewer.API.dll",
     "healthcheckPath": "/api/IfcProperty/health",
     "healthcheckTimeout": 100,
     "restartPolicyType": "ON_FAILURE",
