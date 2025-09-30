@@ -103,32 +103,6 @@ namespace WebIFCViewer.API.Services
             await Task.CompletedTask;
         }
 
-        /// <summary>
-        /// 기본 Geometry 추출 (9KB 파일용 최적화)
-        /// </summary>
-        private async Task ExtractBasicGeometry(IfcStore ifcStore, IfcGeometryResult result)
-        {
-            try
-            {
-                // IFC 버전에 따른 처리
-                var ifcVersion = ifcStore.SchemaVersion;
-                _logger.LogInformation("IFC 버전: {IfcVersion}", ifcVersion);
-
-                // Geometry 추출
-                await ExtractBasicGeometry(ifcStore, result);
-
-                result.Metadata.ObjectCount = result.Geometries.Count;
-                _logger.LogInformation("IFC Geometry 추출 완료: {ObjectCount}개 객체", result.Metadata.ObjectCount);
-
-                return result;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "IFC Geometry 추출 중 오류 발생: {ErrorMessage}, 스택트레이스: {StackTrace}", 
-                    ex.Message, ex.StackTrace);
-                throw;
-            }
-        }
 
         /// <summary>
         /// 기본 Geometry 추출
