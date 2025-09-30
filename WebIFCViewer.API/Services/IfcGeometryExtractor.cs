@@ -60,7 +60,8 @@ namespace WebIFCViewer.API.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "IFC Geometry 추출 중 오류 발생");
+                _logger.LogError(ex, "IFC Geometry 추출 중 오류 발생: {ErrorMessage}, 스택트레이스: {StackTrace}", 
+                    ex.Message, ex.StackTrace);
                 throw;
             }
         }

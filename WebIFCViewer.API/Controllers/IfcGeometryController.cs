@@ -57,8 +57,13 @@ namespace WebIFCViewer.API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "IFC Geometry 추출 처리 중 예외 발생: {FileName}", fileName);
-                return StatusCode(500, new { message = "서버 내부 오류가 발생했습니다." });
+                _logger.LogError(ex, "IFC Geometry 추출 처리 중 예외 발생: {FileName}, 오류: {ErrorMessage}, 스택트레이스: {StackTrace}", 
+                    fileName, ex.Message, ex.StackTrace);
+                return StatusCode(500, new { 
+                    message = "서버 내부 오류가 발생했습니다.",
+                    error = ex.Message,
+                    details = ex.ToString()
+                });
             }
         }
 
