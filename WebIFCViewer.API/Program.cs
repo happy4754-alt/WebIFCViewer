@@ -3,7 +3,12 @@ using WebIFCViewer.API.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // 서비스 등록
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        // JSON 직렬화를 camelCase로 설정 (프론트엔드와의 호환성을 위해)
+        options.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
+    });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
