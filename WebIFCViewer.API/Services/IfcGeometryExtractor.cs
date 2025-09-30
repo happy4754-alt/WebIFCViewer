@@ -70,9 +70,9 @@ namespace WebIFCViewer.API.Services
             // 간단한 박스 Geometry 생성 (테스트용)
             var testGeometry = new IfcGeometryData
             {
-                globalId = "test-box-001",
-                ifcType = "IfcBox",
-                vertices = new List<float>
+                GlobalId = "test-box-001",
+                IfcType = "IfcBox",
+                Vertices = new float[]
                 {
                     // 박스의 8개 꼭짓점
                     -1.0f, -1.0f, -1.0f,  // 0
@@ -84,7 +84,7 @@ namespace WebIFCViewer.API.Services
                      1.0f,  1.0f,  1.0f,  // 6
                     -1.0f,  1.0f,  1.0f   // 7
                 },
-                faces = new List<int>
+                Faces = new uint[]
                 {
                     // 12개 삼각형 면
                     0, 1, 2,  0, 2, 3,  // 앞면
@@ -94,9 +94,9 @@ namespace WebIFCViewer.API.Services
                     0, 3, 7,  0, 7, 4,  // 왼쪽면
                     1, 5, 6,  1, 6, 2   // 오른쪽면
                 },
-                hostId = "",
-                colorHEX = "4CAF50",
-                transparency = 0.0f
+                HostId = "",
+                ColorHEX = "4CAF50",
+                Transparency = 0.0
             };
 
             result.Geometries.Add(testGeometry);
