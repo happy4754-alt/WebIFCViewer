@@ -36,8 +36,8 @@ namespace WebIFCViewer.API.Services
                     Properties = new List<IfcPropertyInfo>()
                 };
 
-                // 간단한 테스트용 속성정보 생성
-                await CreateTestProperties(result);
+                // 실제 IFC 파일 처리 (9KB 파일이므로 가능)
+                await ExtractBasicProperties(ifcStore, result);
 
                 result.TotalCount = result.Properties.Count;
                 result.Success = true;

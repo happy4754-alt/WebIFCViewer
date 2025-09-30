@@ -46,8 +46,8 @@ namespace WebIFCViewer.API.Services
                     }
                 };
 
-                // 간단한 테스트용 Geometry 데이터 생성
-                await CreateTestGeometry(result);
+                // 실제 IFC 파일 처리 (9KB 파일이므로 가능)
+                await ExtractBasicGeometry(ifcStore, result);
 
                 result.Metadata.ObjectCount = result.Geometries.Count;
                 _logger.LogInformation("IFC Geometry 추출 완료: {ObjectCount}개 객체", result.Metadata.ObjectCount);
@@ -104,12 +104,14 @@ namespace WebIFCViewer.API.Services
         }
 
         /// <summary>
-        /// 기본 Geometry 추출 (원래 로직 - 현재 비활성화)
+        /// 기본 Geometry 추출 (9KB 파일용 최적화)
         /// </summary>
         private async Task ExtractBasicGeometry(IfcStore ifcStore, IfcGeometryResult result)
         {
-            // IFC 버전에 따른 처리
-            var ifcVersion = ifcStore.SchemaVersion;
+            try
+            {
+                // IFC 버전에 따른 처리
+                var ifcVersion = ifcStore.SchemaVersion;
                 _logger.LogInformation("IFC 버전: {IfcVersion}", ifcVersion);
 
                 // Geometry 추출
