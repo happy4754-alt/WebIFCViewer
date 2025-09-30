@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebIFCViewer.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e0b41a318bfef42f349a9aed084b0ee9da3fea82")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+57895f0998c320b6fb8d7c5c26745ce920f7c361")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebIFCViewer.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebIFCViewer.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

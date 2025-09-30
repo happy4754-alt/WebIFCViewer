@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: webifcviewer-api
+    env: dotnet
+    buildCommand: dotnet build
+    startCommand: dotnet WebIFCViewer.API.dll
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: PORT
+        value: 8080
