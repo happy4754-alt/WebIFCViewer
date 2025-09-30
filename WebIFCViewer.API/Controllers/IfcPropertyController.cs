@@ -78,6 +78,20 @@ namespace WebIFCViewer.API.Controllers
 
 
         /// <summary>
+        /// 헬스 체크 엔드포인트
+        /// </summary>
+        /// <returns>서버 상태</returns>
+        [HttpGet("health")]
+        public ActionResult<object> HealthCheck()
+        {
+            return Ok(new { 
+                status = "healthy", 
+                timestamp = DateTime.UtcNow,
+                service = "WebIFCViewer API"
+            });
+        }
+
+        /// <summary>
         /// 업로드된 IFC 파일 목록 조회
         /// </summary>
         /// <returns>파일 목록</returns>
